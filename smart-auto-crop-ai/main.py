@@ -23,7 +23,14 @@ app = FastAPI(
     description="AI-powered intelligent image cropping service",
     version="1.0.0"
 )
+@app.get("/")
+def root():
+    return{"massage":"Smart Auto Crop AI is running"}
 
+@app.get("/health")
+def health_check():
+    return{"status":"healthy"}
+    
 # Add CORS middleware
 app.add_middleware(
     CORSMiddleware,
@@ -231,3 +238,4 @@ if __name__ == "__main__":
     print("Starting Smart Auto Crop AI server...")
     print("Server will be available at: http://localhost:8000")
     uvicorn.run(app, host="0.0.0.0", port=8000, log_level="info")
+
